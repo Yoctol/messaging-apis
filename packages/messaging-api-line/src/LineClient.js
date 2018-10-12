@@ -1,6 +1,7 @@
 /* @flow */
 import AxiosError from 'axios-error';
 import axios from 'axios';
+import camelcaseKeys from 'camelcase-keys';
 import debug from 'debug';
 import imageType from 'image-type';
 import invariant from 'invariant';
@@ -71,6 +72,46 @@ export default class LineClient {
     channelSecret: string
   ): LineClient {
     return new LineClient(accessTokenOrConfig, channelSecret);
+  }
+
+  static async issueAccessToken({
+    clientId,
+    clientSecret,
+  }: {
+    clientId: string,
+    clientSecret: string,
+  }): Promise<{ accessToken: string, expiresIn: number, tokenType: string }> {
+    return axios
+      .post(
+        'https://api.line.me/v2/oauth/accessToken',
+        {
+          grant_type: 'client_credentials',
+          client_id: clientId,
+          client_secret: clientSecret,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      )
+      .then(res => camelcaseKeys(res.data), handleError);
+  }
+
+  static async revokeAccessToken(accessToken: string): Promise<{}> {
+    return axios
+      .post(
+        'https://api.line.me/v2/oauth/revoke',
+        {
+          access_token: accessToken,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      )
+      .then(res => camelcaseKeys(res.data), handleError);
   }
 
   _accessToken: string;

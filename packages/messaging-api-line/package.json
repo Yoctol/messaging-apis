@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-error": "^0.7.8",
+    "camelcase-keys": "^4.2.0",
     "debug": "^4.0.1",
     "image-type": "^3.0.0",
     "invariant": "^2.2.4",
