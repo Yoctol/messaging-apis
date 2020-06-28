@@ -13,9 +13,9 @@
     "@types/lodash": "^4.14.156",
     "@types/warning": "^3.0.0",
     "axios": "^0.19.2",
-    "axios-error": "^1.0.0-beta.27",
+    "axios-error": "workspace:^1.0.0-beta.27",
     "lodash": "^4.17.15",
-    "messaging-api-common": "^1.0.0-beta.26"
+    "messaging-api-common": "workspace:^1.0.0-beta.26"
   },
   "keywords": [
     "bot",

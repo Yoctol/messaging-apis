@@ -12,9 +12,9 @@
   "dependencies": {
     "@types/warning": "^3.0.0",
     "axios": "^0.19.2",
-    "axios-error": "file:../axios-error",
+    "axios-error": "workspace:^1.0.0-beta.27",
     "form-data": "^3.0.0",
-    "messaging-api-common": "file:../messaging-api-common",
+    "messaging-api-common": "workspace:^1.0.0-beta.26",
     "warning": "^4.0.3"
   },
   "keywords": [

@@ -18,9 +18,9 @@
   "dependencies": {
     "@types/warning": "^3.0.0",
     "axios": "^0.19.2",
-    "axios-error": "file:../axios-error",
+    "axios-error": "workspace:^1.0.0-beta.27",
     "image-type": "^4.1.0",
-    "messaging-api-common": "file:../messaging-api-common",
+    "messaging-api-common": "workspace:^1.0.0-beta.26",
     "ts-invariant": "^0.4.4",
     "type-fest": "^0.15.1",
     "warning": "^4.0.3"
