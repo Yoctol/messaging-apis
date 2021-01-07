@@ -2522,3 +2522,91 @@ export type LineNotifyOptions = {
    */
   notificationDisabled?: boolean;
 };
+
+/**
+ * Response body of get bot info.
+ *
+ * @see [Get bot info](https://developers.line.biz/en/reference/messaging-api/#get-bot-info)
+ */
+export type BotInfoResponse = {
+  /**
+   * Bot's user ID
+   */
+  userId: string;
+  /**
+   * Bot's basic ID
+   */
+  basicId: string;
+  /**
+   * Bot's premium ID. Not included in the response if the premium ID isn't set.
+   */
+  premiumId?: string;
+  /**
+   * Bot's display name
+   */
+  displayName: string;
+  /**
+   * Profile image URL. "https" image URL. Not included in the response if the bot doesn't have a profile image.
+   */
+  pictureUrl: string;
+  /**
+   * Bot's response mode set in the LINE Official Account Manager. One of:
+   * - chat: The response mode is set to "Chat".
+   * - bot: The response mode is set to "Bot".
+   */
+  chatMode: 'chat' | 'bot';
+  /**
+   * Automatic read setting for messages. If the bot's response mode is "Bot", auto is returned. If the response mode is "Chat", manual is returned.
+   * - auto: Auto read setting is enabled.
+   * - manual: Auto read setting is disabled.
+   */
+  markAsReadMode: 'auto' | 'manual';
+};
+
+/**
+ * Response body of get webhook endpoint info.
+ *
+ * @see [Get get webhook endpoint info](https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information)
+ */
+export type WebhookEndpointInfoResponse = {
+  /**
+   * Webhook URL
+   */
+  endpoint: string;
+  /**
+   * Webhook usage status. Send a webhook event from the LINE platform to the webhook URL only if enabled.
+   * - true: Webhook usage is enabled.
+   * - false: Webhook usage is disabled.
+   */
+  active: boolean;
+};
+
+/**
+ * Response body of test webhook endpoint.
+ *
+ * @see [Test webhook endpoint](https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint)
+ */
+export type TestWebhookEndpointResponse = {
+  /**
+   * Result of the communication from the LINE platform to the webhook URL.
+   * - true: Success
+   * - false: Failure
+   */
+  success: boolean;
+  /**
+   * Time of the event in milliseconds
+   */
+  timestamp: string;
+  /**
+   * The HTTP status code. If the webhook response isn't received, the status code is set to zero or a negative number.
+   */
+  statusCode: number;
+  /**
+   * Reason for the response.
+   */
+  reason: string;
+  /**
+   * Details of the response.
+   */
+  detail: string;
+};

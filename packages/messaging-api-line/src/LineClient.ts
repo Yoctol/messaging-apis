@@ -125,6 +125,64 @@ export default class LineClient {
   }
 
   /**
+   * Gets a bot's basic information.
+   *
+   * [Official document](https://developers.line.biz/en/reference/messaging-api/#get-bot-info)
+   *
+   * @returns Returns status code 200 and a JSON object with the bot information.
+   */
+  getBotInfo(): Promise<LineTypes.BotInfoResponse> {
+    return this.axios
+      .get<LineTypes.BotInfoResponse>('/v2/bot/info')
+      .then((res) => res.data, handleError);
+  }
+
+  /**
+   * Gets information on a webhook endpoint.
+   *
+   * [Official document](https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information)
+   *
+   * @returns Returns status code 200 and a JSON object with the webhook information.
+   */
+  getWebhookEndpointInfo(): Promise<LineTypes.WebhookEndpointInfoResponse> {
+    return this.axios
+      .get<LineTypes.WebhookEndpointInfoResponse>(
+        '/v2/bot/channel/webhook/endpoint'
+      )
+      .then((res) => res.data, handleError);
+  }
+
+  /**
+   * Sets the webhook endpoint URL. It may take up to 1 minute for changes to take place due to caching.
+   *
+   * [Official document](https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information)
+   *
+   * @param endpoint - Webhook URL.
+   *
+   * @returns Returns status code `200` and an empty JSON object.
+   */
+  setWebhookEndpointUrl(endpoint: string): Promise<{}> {
+    return this.axios
+      .put<{}>('/v2/bot/channel/webhook/endpoint', { endpoint })
+      .then((res) => res.data, handleError);
+  }
+
+  /**
+   * Checks if the configured webhook endpoint can receive a test webhook event.
+   *
+   * [Official document](https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint)
+   *
+   * @returns Returns status code 200 and a JSON object with the webhook information.
+   */
+  testWebhookEndpoint(): Promise<LineTypes.TestWebhookEndpointResponse> {
+    return this.axios
+      .post<LineTypes.TestWebhookEndpointResponse>(
+        '/v2/bot/channel/webhook/test'
+      )
+      .then((res) => res.data, handleError);
+  }
+
+  /**
    * Reply Message
    * Sends a reply message in response to an event from a user, group, or room.
    *
